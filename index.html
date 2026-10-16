@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Report campus issues, track progress, and build a better college community.">
+  <title>CampusCare — Better Campus, Together</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="navbar">
+    <a class="brand" href="#home" aria-label="CampusCare home">
+      <span class="brand-icon">✦</span>
+      Campus<span>Care</span>
+    </a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#reports">Reports</a>
+      <a href="#report-form">Report an Issue</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode">☾</button>
+  </header>
+
+  
+<main id="main-content">
+
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <span class="eyebrow">YOUR CAMPUS. YOUR VOICE.</span>
+        <h1>A better campus<br>starts with <span>you.</span></h1>
+        <p>See a problem? Report it. Track it. Help make college life better for everyone.</p>
+        <a href="#report-form" class="primary-btn">＋ Report an issue</a>
+        <div class="hero-stats">
+          <div><strong id="total-count">0</strong><span>Total reports</span></div>
+          <div><strong id="pending-count">0</strong><span>Need attention</span></div>
+          <div><strong id="resolved-count">0</strong><span>Resolved</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle"></div>
+        <div class="art-card art-card-one"><span>✓</span><div><b>Issue resolved!</b><small>Campus is improving</small></div></div>
+        <div class="art-card art-card-two"><span>✦</span><div><b>Student voices</b><small>Making a difference</small></div></div>
+        <div class="art-building">🏫</div>
+      </div>
+    </section>
+
+    <section class="dashboard content" id="dashboard">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">AT A GLANCE</span>
+          <h2>Campus overview</h2>
+        </div>
+        <span class="live-indicator"><span></span> Live statistics</span>
+      </div>
+
+      <div class="dashboard-grid">
+        <article class="metric-card metric-total">
+          <div class="metric-icon">▤</div>
+          <span class="metric-label">Total reports</span>
+          <strong id="dash-total">0</strong>
+          <small>All submitted issues</small>
+        </article>
+        <article class="metric-card metric-pending">
+          <div class="metric-icon">◷</div>
+          <span class="metric-label">Awaiting action</span>
+          <strong id="dash-pending">0</strong>
+          <small>Reports still pending</small>
+        </article>
+        <article class="metric-card metric-resolved">
+          <div class="metric-icon">✓</div>
+          <span class="metric-label">Resolved</span>
+          <strong id="dash-resolved">0</strong>
+          <small>Issues marked complete</small>
+        </article>
+        <article class="metric-card metric-rate">
+          <div class="metric-icon">↗</div>
+          <span class="metric-label">Resolution rate</span>
+          <strong id="resolution-rate">0%</strong>
+          <div class="progress-track"><span id="resolution-progress"></span></div>
+          <small>Of all campus reports</small>
+        </article>
+      </div>
+
+      <article class="category-panel">
+        <div class="panel-heading">
+          <div><h3>Reports by category</h3><p>See where attention is needed.</p></div>
+          <span class="panel-symbol">◈</span>
+        </div>
+        <div id="category-summary" class="category-summary"></div>
+      </article>
+    </section>
+
+    <section class="content" id="reports">
+      <div class="section-heading">
+        <div><span class="eyebrow">CAMPUS COMMUNITY</span><h2>Explore reports</h2></div>
+                                                                                           
+<span id="result-count" class="result-count"
+      role="status" aria-live="polite">0 reports</span>
+      </div>
+
+      <div class="toolbar">
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="search" type="search" placeholder="Search issues, places..." aria-label="Search reports">
+        </label>
+        <select id="category-filter" aria-label="Filter by category">
+          <option value="All">All categories</option>
+          <option value="Classroom">Classroom</option>
+          <option value="Cleanliness">Cleanliness</option>
+          <option value="Water">Water</option>
+          <option value="Electricity">Electricity</option>
+          <option value="Other">Other</option>
+        </select>
+        <select id="status-filter" aria-label="Filter by status">
+          <option value="All">All statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+        <select id="sort-filter" aria-label="Sort reports">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="priority">Highest priority</option>
+          <option value="title">Title A–Z</option>
+        </select>
+      </div>
+
+      <div id="report-list" class="report-grid">
+        <div class="empty-state"><span>⌛</span><h3>Loading reports...</h3><p>Getting campus updates ready.</p></div>
+      </div>
+    </section>
+
+    <section class="form-section" id="report-form">
+      <div class="form-intro">
+        <span class="eyebrow">MAKE A DIFFERENCE</span>
+        <h2>Something needs fixing?</h2>
+        <p>Tell us what's happening. Every report helps create a better campus.</p>
+        <div class="form-note">✦ Your report matters. Give us the details so the right people can act.</div>
+      </div>
+
+      <form id="problem-form" class="report-form">
+        <div class="form-top">
+          <span class="form-icon">✎</span>
+          <div><h3>Submit a report</h3><p>Fields marked * are required.</p></div>
+        </div>
+
+        <label for="title">Problem title *</label>
+        <input id="title" name="title" maxlength="100" required placeholder="e.g. Broken fan in classroom">
+
+        <div class="field-row">
+          <div>
+            <label for="category">Category *</label>
+            <select id="category" name="category" required>
+              <option value="">Choose category</option>
+              <option>Classroom</option><option>Cleanliness</option>
+              <option>Water</option><option>Electricity</option><option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="priority">Priority *</label>
+            <select id="priority" name="priority" required>
+              <option value="Medium">Medium — Normal</option>
+              <option value="Low">Low — Minor issue</option>
+              <option value="High">High — Urgent issue</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="location">Location *</label>
+        <input id="location" name="location" maxlength="100" required placeholder="e.g. Block A, Room 204">
+
+        <label for="description">Description *</label>
+        <textarea id="description" name="description" rows="4" maxlength="1000" required placeholder="Describe the issue and why it needs attention..."></textarea>
+
+        <button class="primary-btn submit-btn" type="submit">Submit report <span>→</span></button>
+        <p id="form-message" class="form-message" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#home"><span class="brand-icon">✦</span> Campus<span>Care</span></a>
+    <p>Small actions. Better campuses. 💜</p>
+    <span>© 2026 CampusCare</span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
